@@ -13,7 +13,7 @@ window.onmousemove = e => {
 
     console.log(percentage)
 
-    track.style.transform = 'translate(${percentage}%, -50%)';
+    track.style.transform = `translate(-${percentage}%, -50%)`;
 }
 
 window.onmouseup = e => {
