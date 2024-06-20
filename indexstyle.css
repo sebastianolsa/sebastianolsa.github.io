@@ -1,4 +1,5 @@
 body {
+    user-select: none;
     overflow: hidden;
     background-color: #0a0a0a;
     align-content: center;
@@ -7,9 +8,9 @@ body {
 
 #track > .image {
     height: 40vmin;
-    width: calc(40vmin/1.618);
-    object-fit:cover;
-    object-position:center;
+    width: 30vmin;
+    object-fit: cover;
+    object-position: 50% 50%;
 }
 
 #track {
