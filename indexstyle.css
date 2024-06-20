@@ -1,24 +1,45 @@
+:root {
+    --dark-color: #0a0a0a;
+    --light-color: #fafafa;
+}
+
+
 body {
     user-select: none;
     overflow: hidden;
-    background-color: #0a0a0a;
+    background-color: var(--dark-color);
     align-content: center;
-    color: #fafafa;
+    color: var(--light-color);
 }
 
 #track > .image {
-    height: 40vmin;
-    width: 30vmin;
+    height: 40vh;
+    width: 30vh;
     object-fit: cover;
     object-position: 50% 50%;
 }
 
 #track {
+    z-index: 2;
     display: flex;
     gap: 5vmin;
     position: absolute;
-    margin:auto;
     left: 50%;
     top: 50%;
-    transform: translate(0%, -50%);
+    transform: translate(-15vh, -50%);
+}
+
+#selector {
+    display: flex;
+    z-index: 3;
+    color: var(--light-color);
+    position: absolute;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "sans-serif";
+    font-size: 10vmin;
+    text-align: center;
+    align-self:center;
 }

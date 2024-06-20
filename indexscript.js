@@ -3,31 +3,57 @@ const track = document.getElementById("track")
 const mapNumRange = (num, inMin, inMax, outMin, outMax) =>
   ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 
+
+window.onload = e => {
+    for (let i = 0; i < track.childElementCount; i++) {
+        const image = track.children[i];
+
+        if (image.nodeName === 'IMG') {
+            const id = parseInt(image.id[3])
+            let image_slide = mapNumRange(0, id * 100 / track.childElementCount, (id+1) * 100 / track.childElementCount, 42, 58);
+            image.style.objectPosition = `${image_slide}% 50%`
+        }
+    }
+}
+
+
 window.onmousedown = e => {
-    track.dataset.mouseDown = e.clientX;
+    track.dataset.mouseDownAt = e.clientX;
 }
 
 window.onmousemove = e => {
-    if (track.dataset.mouseDown === "0") return;
+    if (track.dataset.mouseDownAt === "0") return;
 
-    const mouseDelta = parseFloat(track.dataset.mouseDown) - e.clientX;
-    const maxDelta = window.innerWidth / 1.5;
+    const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX;
+    const maxDelta = window.innerWidth;
     const percentage = (mouseDelta / maxDelta) * 100;
 
-    track.style.transform = `translate(-${mapNumRange(percentage,0,100,5,95)}%, -50%)`;
+    const nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage;
+    let nextPercentageConst = Math.max(Math.min(nextPercentage, 100),0);
+    track.dataset.percentage = nextPercentageConst;
+
+    track.animate({
+        transform: `translate(calc(-${nextPercentageConst}% + ${mapNumRange(nextPercentageConst,0,100,-15,15)}vh), -50%)`
+    }, { duration: 1500, fill: "forwards" })
 
     const item_count = track.childElementCount;
 
     for (let i = 0; i < track.childElementCount; i++) {
         const image = track.children[i];
 
-        if (image.nodeName !== 'IMG') return;
+        if (image.nodeName === 'IMG') {
+            const id = parseInt(image.id[3]);
+            let image_slide = mapNumRange(nextPercentageConst, id * 100 / item_count, (id+1) * 100 / item_count, 42, 58);
 
-        const id = parseInt(image.id[3]);
-        image.style.objectPosition = `${mapNumRange(percentage,(id-1)*115/item_count,id*115/item_count,42,58)}% 50%`
+
+            image.animate({
+                objectPosition: `${image_slide}% 50%`
+            }, { duration: 1500, fill: "forwards" } )
+        }
     }
 }
 
 window.onmouseup = e => {
-    track.dataset.mouseDown = "0";
+    track.dataset.mouseDownAt = "0";
+    track.dataset.prevPercentage = track.dataset.percentage;
 }
