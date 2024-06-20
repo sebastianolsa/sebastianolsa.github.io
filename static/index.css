@@ -1,0 +1,23 @@
+body {
+    overflow: hidden;
+    background-color: #0a0a0a;
+    align-content: center;
+    color: #fafafa;
+}
+
+#track > .image {
+    height: 40vmin;
+    width: calc(40vmin/1.618);
+    object-fit:cover;
+    object-position:center;
+}
+
+#track {
+    display: flex;
+    gap: 5vmin;
+    position: absolute;
+    margin:auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(0%, -50%);
+}
