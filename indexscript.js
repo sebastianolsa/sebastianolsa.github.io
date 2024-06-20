@@ -1,20 +1,21 @@
 const track = document.getElementById("track")
-let data = track.getAttribute("data-mousedown");
 
 window.onmousedown = e => {
-    data = e.clientX;
+    track.dataset.mouseDown = e.clientX;
 }
 
 window.onmousemove = e => {
-    if (data === "0") return;
+    if (track.dataset.mouseDown === "0") return;
 
-    const mouseDelta = parseFloat(data) - e.clientX;
+    const mouseDelta = parseFloat(track.dataset.mouseDown) - e.clientX;
     const maxDelta = window.innerWidth / 2;
     const percentage = (mouseDelta / maxDelta) * 100;
+
+    console.log(percentage)
 
     track.style.transform = 'translate(${percentage}%, -50%)';
 }
 
 window.onmouseup = e => {
-    data = "0";
+    track.dataset.mouseDown = "0";
 }
