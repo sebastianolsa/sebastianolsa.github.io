@@ -3,6 +3,7 @@ const aboutBtn = document.getElementById("aboutBtn")
 
 let mouseDownX;
 let mouseDownY;
+let inAbout = false;
 
 const mapNumRange = (num, inMin, inMax, outMin, outMax) =>
   ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
@@ -28,7 +29,8 @@ window.onmousedown = e => {
 }
 
 window.onmousemove = e => {
-    if (track.dataset.mouseDownAt === "0") return;
+    if (inAbout) return; //only animate track when not in the about page
+    if (track.dataset.mouseDownAt === "0") return; //0 is a mouse placeholder meaning the mouse hasn't been pressed
 
     const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX;
     const maxDelta = window.innerWidth * 1.5;
@@ -59,13 +61,31 @@ window.onmousemove = e => {
 }
 
 window.onmouseup = e => {
-    track.dataset.mouseDownAt = "0";
-    track.dataset.prevPercentage = track.dataset.percentage;
+    track.dataset.mouseDownAt = "0"; //set back to default meaning mouse hasnt been pressed
+    track.dataset.prevPercentage = track.dataset.percentage; //update the scroll percentage
 
 }
 
 //about button controls
 
 aboutBtn.onclick = e => {
-    console.log("about btn pressed");
+    inAbout = !inAbout;
+
+    //flip and move button
+    aboutBtn.animate({
+        transform: `scaleX(200%) scaleY(${100 * (inAbout ? 1 : -1)}%)`
+    }, { duration: 1000, fill: "forwards"})
+
+    document.getElementById('nav').animate({
+        bottom: `${inAbout ? 85 : -0}%`
+    }, { duration: 1000, fill:"forwards"})
+
+    //move track and selector up and off screen too
+    track.animate({
+        top: `${inAbout ? -35 : 50}%`
+    }, { duration: 1000, fill: "forwards"})
+
+    document.getElementById('selector').animate({
+        top: `${inAbout ? -35 : 50}%`
+    }, { duration: 1000, fill: "forwards"})
 }
