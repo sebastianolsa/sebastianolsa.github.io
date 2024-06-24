@@ -73,19 +73,19 @@ aboutBtn.onclick = e => {
 
     //flip and move button
     aboutBtn.animate({
-        transform: `scaleX(200%) scaleY(${100 * (inAbout ? 1 : -1)}%)`
-    }, { duration: 1000, fill: "forwards"})
+        transform: `scaleX(350%) scaleY(${100 * (inAbout ? 1 : -1)}%)`
+    }, { duration: 1000, fill: "forwards" })
 
     document.getElementById('nav').animate({
         bottom: `${inAbout ? 85 : -0}%`
-    }, { duration: 1000, fill:"forwards"})
+    }, { duration: 1000, fill: "forwards" })
 
     //move track and selector up and off screen too
     track.animate({
         top: `${inAbout ? -35 : 50}%`
-    }, { duration: 1000, fill: "forwards"})
+    }, { duration: 1000, fill: "forwards" })
 
     document.getElementById('selector').animate({
         top: `${inAbout ? -35 : 50}%`
-    }, { duration: 1000, fill: "forwards"})
+    }, { duration: 1000, fill: "forwards" })
 }
