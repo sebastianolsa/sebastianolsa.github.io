@@ -47,7 +47,7 @@ window.onmousemove = e => {
 
     track.animate({
         transform: `translate(calc(-${nextPercentageConst}% + ${mapNumRange(nextPercentageConst,0,100,-15,15)}vh), -50%)`
-    }, { duration: 1500, fill: "forwards" })
+    }, { duration: 1500, fill: "forwards", easing: "ease-in-out" })
 
     const item_count = track.childElementCount;
 
