@@ -1,6 +1,11 @@
 :root {
-    --dark-color: #00000c;
-    --light-color: #dedeff;
+    --background-color: #080811;
+    --lighterbackground-color: #2A2A4A;
+    --primaryaccent-color: #16213E;
+    --secondaryaccent-color: #0F3460;
+    --highlight-color: #1B65A7;
+    --primarytext-color: #EAEAEA;
+    --secondarytext-color: #A6B1E1;
 }
 
 
@@ -8,9 +13,9 @@ body {
     font-family: "Roboto Light";
     user-select: none;
     overflow: hidden;
-    background-color: var(--dark-color);
+    background-color: var(--background-color);
     align-content: center;
-    color: var(--light-color);
+    color: var(--primarytext-color);
 }
 
 nav {
@@ -25,16 +30,15 @@ nav > .text {
     transition: all 300ms;
     font-size: 5vh;
     text-align: center;
-    transform: scaleX(175%) scaleY(-50%);
+    transform: scaleX(200%) scaleY(-50%);
     text-decoration: none;
-    color: var(--light-color);
-    opacity: 30%;
+    color: var(--lighterbackground-color);
 }
 
 nav > .text:hover {
-    opacity: 45%;
     font-size: 5.5vh;
     cursor: pointer;
+    color: var(--primarytext-color);
 }
 
 #track > .image {
@@ -57,7 +61,7 @@ nav > .text:hover {
 
 #selector {
     z-index: 3;
-    color: var(--light-color);
+    color: var(--primarytext-color);
     position: absolute;
     margin: auto;
     left: 50%;
