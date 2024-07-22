@@ -73,7 +73,7 @@ aboutBtn.onclick = e => {
 
     //flip and move button
     aboutBtn.animate({
-        transform: `scaleX(350%) scaleY(${100 * (inAbout ? 1 : -1)}%)`
+        transform: `scaleX(175%) scaleY(${50 * (inAbout ? 1 : -1)}%)`
     }, { duration: 1000, fill: "forwards" })
 
     document.getElementById('nav').animate({
