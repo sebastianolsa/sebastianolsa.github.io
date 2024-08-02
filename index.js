@@ -4,6 +4,7 @@ const aboutBtn = document.getElementById("aboutBtn")
 let mouseDownX;
 let mouseDownY;
 let inAbout = false;
+let inWindow = false; //true if in display window sub-site
 let click = false;
 
 const mapNumRange = (num, inMin, inMax, outMin, outMax) =>
@@ -21,7 +22,7 @@ window.onload = e => {
 
         if (image.nodeName === 'IMG') {
             const id = parseInt(image.id[3])
-            let image_slide = mapNumRange(0, id * 100 / track.childElementCount, (id+1) * 100 / track.childElementCount, 46, 54);
+            let image_slide = mapNumRange(0, id * 100 / track.childElementCount, (id+1) * 100 / track.childElementCount, 58, 42);
             image.style.objectPosition = `${image_slide}% 50%`
         }
     }
@@ -34,7 +35,7 @@ window.onmousedown = e => {
 }
 
 window.onmousemove = e => {
-    if (inAbout) return; //only animate track when not in the about page
+    if (inAbout || inWindow) return; //only animate track when not in the about page
     if (track.dataset.mouseDownAt === "0") return; //0 is a mouse placeholder meaning the mouse hasn't been pressed
 
     const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX;
@@ -61,7 +62,7 @@ window.onmousemove = e => {
             } else {
                 id = parseInt(image.id[3]);
             }
-            const image_slide = mapNumRange(nextPercentageConst, id * 100 / item_count, (id+1) * 100 / item_count, 46, 54);
+            const image_slide = mapNumRange(nextPercentageConst, id * 100 / item_count, (id+1) * 100 / item_count, 58, 42);
 
             image.animate({
                 objectPosition: `${image_slide}% 50%`
